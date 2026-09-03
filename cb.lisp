@@ -1,0 +1,6 @@
+(require :uiop)
+(defun build ()
+	(format t "Building irfetch..~%")
+	(uiop:run-program "sh vars.sh" :output nil)
+	(uiop:run-program "clang irfetch.c -o irfetch" :output t)
+	(uiop:run-program "cp irfetch /usr/local/mph/bin/irfetch" :output t))
