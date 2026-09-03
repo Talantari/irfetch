@@ -11,10 +11,10 @@
 #define RBC "\x1b[41m"
 #define SEPARATOR "= "
 const char osname[] = get_kernel;
-void iran_linux(void) {
+void ir_linux(void) {
         printf(
                 BGRD GREEN   "#######################" RESET GREEN " S" RESET SEFID "R" RESET RED "B" RESET "Fetch " VERSION "\n"
-                BGRD GREEN   "#######################" RESET  " OS " SEPARATOR "iranOS\n"
+                BGRD GREEN   "#######################" RESET  " OS " SEPARATOR "JabirOS\n"
                 BGRD GREEN   "#######################" RESET  " Kernel " SEPARATOR get_kernel " " get_kernel_ver "\n"
                 BGBL SEFID   "#######################" RESET  " Shell " SEPARATOR get_shell "\n"
                 BGBL SEFID   "#######################" RESET  " Hostname " SEPARATOR get_hostname "\n"
@@ -24,7 +24,7 @@ void iran_linux(void) {
                 BGWH RED     "#######################" RESET "\n"
         );
                  }
-void iran_unknown() {
+void ir_unknown() {
         printf(
                         GREEN " ## " RESET GREEN "S" RESET SEFID "R" RESET RED "B" RESET "Fetch" VERSION "\n"
                         GREEN "#  #" RESET "OS " SEPARATOR get_kernel "\n"
@@ -34,28 +34,28 @@ void iran_unknown() {
                         RED "  # " RESET "\n"
             );
 }
-void iran_openbsd() {
+void ir_openbsd() {
         printf(
                 "       _____"  GREEN  "     D"  RESET  SEFID  "R"  RESET RED "B" RESET "Fetch " VERSION "\n"
-                "     \\-     -/"  "   OS " SEPARATOR "iran_BSD" "\n"
+                "     \\-     -/"  "   OS " SEPARATOR "Jabir_BSD" "\n"
                 "  \\_/         \\" "  Kernel " SEPARATOR get_kernel " " get_kernel_ver "\n"
                 " |         O O |" " Shell " SEPARATOR get_shell "\n"
                 " |_  <   )  3 )" "  Hostname " SEPARATOR get_hostname "\n"
                 " /  \\         /\n"
                 "    /-_____-\\\n");
 }
-void iran_netbsd() {
+void ir_netbsd() {
       printf(
           "*" BGRD GREEN "###### " RESET GREEN " S" RESET SEFID "R" RESET RED "B" RESET "Fetch " VERSION "\n"
-          "*" BGBL SEFID "###### " RESET " OS " SEPARATOR "iran_BSD\n"
+          "*" BGBL SEFID "###### " RESET " OS " SEPARATOR "Jibbed\n"
           "*" BGWH RED "###### " RESET " Kernel " SEPARATOR get_kernel " " get_kernel_ver "\n"
           "*" "        Shell " SEPARATOR get_shell "\n"
           "*" "        Hostname " SEPARATOR get_hostname "\n" ); }
-void iran_freebsd();
+void ir_freebsd();
 int main() {
-	if(strcmp(osname, "Linux")   == 0)   { iran_linux();   }
-  else if(strcmp(osname, "OpenBSD") == 0)   { iran_openbsd(); }
-  else if(strcmp(osname, "NetBSD")  == 0)   { iran_netbsd();  }
-  else if(strcmp(osname, "FreeBSD") == 0)   { iran_freebsd(); }
+	if(strcmp(osname, "Linux")   == 0)   { ir_linux();   }
+  else if(strcmp(osname, "OpenBSD") == 0)   { ir_openbsd(); }
+  else if(strcmp(osname, "NetBSD")  == 0)   { ir_netbsd();  }
+  else if(strcmp(osname, "FreeBSD") == 0)   { ir_freebsd(); }
   else { iran_unknown(); }
 }
