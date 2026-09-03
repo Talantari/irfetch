@@ -1,6 +1,0 @@
-(require :uiop)
-(defun build () 
-	(format t "Building srbfetch..~%")
-	(uiop:run-program "sh vars.sh" :output nil)
-	(uiop:run-program "clang srbfetch.c -o srbfetch" :output t)
-	(uiop:run-program "cp srbfetch /usr/local/mph/bin/srbfetch" :output t))
