@@ -1,22 +1,21 @@
 #!/bin/sh
-# VaRS.sh - script to echo shell variables to vars.h
 get_kernel=$(uname -s)
 get_kernel_ver=$(uname -r)
-get_shell=$(echo $SHELL)
-#get_hostname=$(cat /etc/hostname)
+get_shell=$(echo "$SHELL")
 if command -v hostname > /dev/null 2>&1; then
-	get_hostname=$(hostname)
+    get_hostname=$(hostname)
 else
-	get_hostname=$(sysctl -n kern.hostname) # for openbsd
+    get_hostname=$(sysctl -n kern.hostname)
 fi
 file="./vars.h"
 
+cat > "$file" <<EOF
+#include <stdio.h>
+#define get_kernel "$get_kernel"
+#define get_kernel_ver "$get_kernel_ver"
+#define get_shell "$get_shell"
+#define get_hostname "$get_hostname"
+EOF
 
-touch $file
-echo "#include <stdio.h>" | tee -a $file
-echo "#define get_kernel \"$get_kernel\" " | tee -a $file
-echo "#define get_kernel_ver \"$get_kernel_ver\" " | tee -a $file
-echo "#define get_shell \"$get_shell\" " | tee -a $file
-echo "#define get_hostname \"$get_hostname\" " | tee -a $file
-echo "Vars echoed succsesfully."
+echo "Vars echoed successfully."
 exit 0
