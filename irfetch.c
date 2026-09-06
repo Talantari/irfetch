@@ -1,40 +1,43 @@
 #include <stdio.h>
+#include <string.h>
 #include "./vars.h"
+
 #define VERSION "1.5"
-#define REST "\033[0m"
-#define GREEN "\x1b[32m"
-#define SEFID "\x1b[37m"
-#define RED "\x1b[31m"
+#define RESET   "\033[0m"
+#define GREEN   "\x1b[32m"
+#define SEFID   "\x1b[37m"
+#define RED     "\x1b[31m"
 //Backgrounds
-#define GBC "\x1b[42m"
-#define WBC "\x1b[47m"
-#define RBC "\x1b[41m"
+#define IRG "\x1b[32;42m"
+#define IRW "\x1b[37;47m"
+#define IRR "\x1b[31;41m"
 #define SEPARATOR "= "
+
 const char osname[] = get_kernel;
 void ir_linux(void) {
         printf(
-                BGRD GREEN   "#######################" RESET GREEN " S" RESET SEFID "R" RESET RED "B" RESET "Fetch " VERSION "\n"
-                BGRD GREEN   "#######################" RESET  " OS " SEPARATOR "JabirOS\n"
-                BGRD GREEN   "#######################" RESET  " Kernel " SEPARATOR get_kernel " " get_kernel_ver "\n"
-                BGBL SEFID   "#######################" RESET  " Shell " SEPARATOR get_shell "\n"
-                BGBL SEFID   "#######################" RESET  " Hostname " SEPARATOR get_hostname "\n"
-                BGBL SEFID   "#######################" RESET "\n"
-                BGWH RED     "#######################" RESET "\n"
-                BGWH RED     "#######################" RESET "\n"
-                BGWH RED     "#######################" RESET "\n"
-        );
-                 }
-void ir_unknown() {
-        printf(
-                        GREEN " ## " RESET GREEN "S" RESET SEFID "R" RESET RED "B" RESET "Fetch" VERSION "\n"
-                        GREEN "#  #" RESET "OS " SEPARATOR get_kernel "\n"
-                        SEFID "  # " RESET "Kernel " SEPARATOR get_kernel " " get_kernel_ver "\n"
-                        SEFID "  # " RESET "Shell " SEPARATOR get_shell "\n"
-                        "    Hostname " SEPARATOR get_hostname "\n"
-                        RED "  # " RESET "\n"
-            );
+                IRG "#######################" RESET GREEN " S" RESET SEFID "R" RESET RED "B" RESET "Fetch " VERSION "\n"
+                IRG "#######################" RESET " OS " SEPARATOR "JabirOS\n"
+                IRG "#######################" RESET " Kernel " SEPARATOR get_kernel " " get_kernel_ver "\n"
+                IRW "#######################" RESET " Shell " SEPARATOR get_shell "\n"
+                IRW "#######################" RESET " Hostname " SEPARATOR get_hostname "\n"
+                IRW "#######################" RESET "\n"
+                IRR "#######################" RESET "\n"
+                IRR "#######################" RESET "\n"
+                IRR "#######################" RESET "\n"
+);
 }
-void ir_openbsd() {
+void ir_unknown(void) {
+	printf(
+                        IRG " ## " RESET GREEN "S" RESET SEFID "R" RESET RED "B" RESET "Fetch" VERSION "\n"
+                        IRG "#  #" RESET "OS " SEPARATOR get_kernel "\n"
+                        IRG "  # " RESET "Kernel " SEPARATOR get_kernel " " get_kernel_ver "\n"
+                        IRW "  # " RESET "Shell " SEPARATOR get_shell "\n"
+                        IRW "    Hostname " SEPARATOR get_hostname "\n"
+                        IRR "  # " RESET "\n"
+);
+}
+void ir_openbsd(void) {
         printf(
                 "       _____"  GREEN  "     D"  RESET  SEFID  "R"  RESET RED "B" RESET "Fetch " VERSION "\n"
                 "     \\-     -/"  "   OS " SEPARATOR "Jabir_BSD" "\n"
@@ -44,18 +47,28 @@ void ir_openbsd() {
                 " /  \\         /\n"
                 "    /-_____-\\\n");
 }
-void ir_netbsd() {
+void ir_netbsd(void) {
       printf(
-          "*" BGRD GREEN "###### " RESET GREEN " S" RESET SEFID "R" RESET RED "B" RESET "Fetch " VERSION "\n"
-          "*" BGBL SEFID "###### " RESET " OS " SEPARATOR "Jibbed\n"
-          "*" BGWH RED "###### " RESET " Kernel " SEPARATOR get_kernel " " get_kernel_ver "\n"
+          "*" IRG "###### " RESET GREEN " S" RESET SEFID "R" RESET RED "B" RESET "Fetch " VERSION "\n"
+          "*" IRW "###### " RESET " OS " SEPARATOR "Jibbed\n"
+          "*" IRR "###### " RESET " Kernel " SEPARATOR get_kernel " " get_kernel_ver "\n"
           "*" "        Shell " SEPARATOR get_shell "\n"
-          "*" "        Hostname " SEPARATOR get_hostname "\n" ); }
-void ir_freebsd();
-int main() {
-	if(strcmp(osname, "Linux")   == 0)   { ir_linux();   }
-  else if(strcmp(osname, "OpenBSD") == 0)   { ir_openbsd(); }
-  else if(strcmp(osname, "NetBSD")  == 0)   { ir_netbsd();  }
-  else if(strcmp(osname, "FreeBSD") == 0)   { ir_freebsd(); }
-  else { iran_unknown(); }
+          "*" "        Hostname " SEPARATOR get_hostname "\n" );
+}
+void ir_freebsd(void) {
+        printf(
+                IRR "  ,######,  " RESET GREEN " S" RESET SEFID "R" RESET RED "B" RESET "Fetch " VERSION "\n"
+                IRW "  |        |  " RESET " OS " SEPARATOR "FreeBSD\n"
+                IRW "  |        |  " RESET " Kernel " SEPARATOR get_kernel " " get_kernel_ver "\n"
+                IRR "  '--------'  " RESET " Shell " SEPARATOR get_shell "\n"
+                IRR "                " RESET " Hostname " SEPARATOR get_hostname "\n" );
+}
+
+int main(void) {
+        if(strcmp(osname, "Linux") == 0)        { ir_linux();   }
+        else if(strcmp(osname, "OpenBSD") == 0) { ir_openbsd(); }
+        else if(strcmp(osname, "NetBSD") == 0)  { ir_netbsd();  }
+        else if(strcmp(osname, "FreeBSD") == 0) { ir_freebsd(); }
+        else { ir_unknown(); }
+        return 0;
 }
