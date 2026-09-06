@@ -1,5 +1,6 @@
 # irefetch
 Iranized fork of srbfetch; Fast, C-Written, non-bloated alternative for neofetch and fastfetch. Work in progress!
+![ee](./alpine.png)
 ## Installation guide
 Run vars.sh script.
 ```
