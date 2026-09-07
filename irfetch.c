@@ -16,7 +16,7 @@
 const char osname[] = get_kernel;
 void ir_linux(void) {
         printf(
-                IRG "#######################" RESET GREEN " S" RESET SEFID "R" RESET RED "B" RESET "Fetch " VERSION "\n"
+                IRG "#######################" RESET GREEN " I" RESET SEFID "RA" RESET RED "N" RESET "Fetch " VERSION "\n"
                 IRG "#######################" RESET " OS " SEPARATOR "JabirOS\n"
                 IRG "#######################" RESET " Kernel " SEPARATOR get_kernel " " get_kernel_ver "\n"
                 IRW "#######################" RESET " Shell " SEPARATOR get_shell "\n"
